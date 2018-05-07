@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Weather";
+}
+
+<div class="container text-center">
+	<form asp-controller="Weather" asp-action="CurrentWeather" method="get">
+		<p class="h3 text-center">Current weather</p>
+		<p style="color: black;">
+			City Name: <input class="input-lg" type="text" name="query">
+			<input class="btn btn-info" type="submit" value="Get"/>
+		</p>
+	</form>
+</div>

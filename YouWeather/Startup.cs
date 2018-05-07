@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using YouWeather.Services;
 
 namespace YouWeather
 {
@@ -21,7 +22,8 @@ namespace YouWeather
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+	        services.AddScoped<IWeather, WeatherService>();
+			services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,7 +36,7 @@ namespace YouWeather
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Home/Error"); //Doesnt exist yet
             }
 
             app.UseStaticFiles();
@@ -43,7 +45,7 @@ namespace YouWeather
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Weather}/{action=Index}/{id?}");
             });
         }
     }

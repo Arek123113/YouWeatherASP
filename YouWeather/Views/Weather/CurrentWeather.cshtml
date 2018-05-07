@@ -1,0 +1,31 @@
+﻿@model YouWeather.Models.RootObject
+@{
+    ViewData["Title"] = "CurrentWeather";
+}
+
+<h2>Current Weather</h2>
+
+<br/>
+<form asp-controller="Weather" asp-action="CurrentWeather" method="get">
+	<p style="color: black;">
+		City name: <input class="input-lg" type="text" name="query">
+		<input class="btn btn-info" type="submit" value="Get" />
+	</p>
+</form>
+
+<div class="container text-left">
+	<P class="h1">
+		<img src="@ViewBag.IconImage" />
+		@ViewBag.city
+	</P>
+	<p>Description: @Model.weather[0].description</p>
+	<p>All Clouds: @Model.clouds.all</p>
+	<p>Temperature: @ViewBag.cityTemp&deg;C</p>
+	<p>Country: @Model.sys.country</p>
+	<p>Latitude: @Model.coord.lat</p>
+	<p>Lontitude: @Model.coord.lon</p>
+	<p>Wind Speed: @Model.wind.speed</p>
+	<p>Maximum temperature: @ViewBag.maxtemp</p>
+	<p>Minimum temperature: @ViewBag.mintemp</p>
+</div>
+
